@@ -1,0 +1,1631 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#05050d">
+<title>Future Vision V3</title>
+
+<style>
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+
+html,body{
+    margin:0;
+    min-height:100%;
+    font-family:Arial,sans-serif;
+    color:#fff;
+}
+
+body{
+    background:
+    radial-gradient(circle at 15% 5%,#704cff45,transparent 30%),
+    radial-gradient(circle at 90% 90%,#c03cff30,transparent 35%),
+    #05050d;
+}
+
+button,input,select,textarea{
+    font:inherit;
+}
+
+.app{
+    width:100%;
+    max-width:520px;
+    margin:auto;
+    padding:15px;
+    min-height:100vh;
+}
+
+header{
+    text-align:center;
+    padding:20px 0 12px;
+}
+
+.logo{
+    width:82px;
+    height:82px;
+    margin:auto;
+    display:grid;
+    place-items:center;
+    border-radius:27px;
+    font-size:42px;
+    background:linear-gradient(135deg,#625cff,#ae35ff);
+    box-shadow:0 0 70px #754cff66;
+    animation:pulse 2.5s infinite;
+}
+
+@keyframes pulse{
+    50%{
+        transform:scale(1.06);
+        box-shadow:0 0 100px #a13cff77;
+    }
+}
+
+h1{
+    margin:13px 0 4px;
+    font-size:32px;
+}
+
+h2{
+    margin-top:0;
+}
+
+.subtitle{
+    color:#8f96ae;
+    font-size:14px;
+}
+
+.uses{
+    width:max-content;
+    margin:16px auto;
+    padding:10px 17px;
+    border-radius:30px;
+    background:#121528;
+    border:1px solid #ffffff12;
+    font-weight:bold;
+}
+
+.uses b{
+    color:#a493ff;
+    font-size:20px;
+}
+
+.card{
+    background:#111426f5;
+    border:1px solid #ffffff10;
+    border-radius:24px;
+    padding:20px;
+    margin-top:15px;
+    box-shadow:0 20px 70px #0009;
+    backdrop-filter:blur(15px);
+}
+
+.hidden{
+    display:none!important;
+}
+
+.info{
+    background:#191d33;
+    border-radius:16px;
+    padding:15px;
+    color:#c0c6da;
+    font-size:13px;
+    line-height:1.55;
+}
+
+button{
+    width:100%;
+    min-height:53px;
+    margin-top:14px;
+    padding:13px;
+    border:0;
+    border-radius:15px;
+    color:white;
+    font-weight:bold;
+    cursor:pointer;
+    background:linear-gradient(135deg,#635cff,#a43aff);
+    transition:.15s;
+}
+
+button:active{
+    transform:scale(.97);
+}
+
+button:disabled{
+    opacity:.45;
+    cursor:not-allowed;
+}
+
+.secondary{
+    background:#292e47;
+}
+
+.danger{
+    background:#552333;
+}
+
+.row{
+    display:flex;
+    gap:10px;
+}
+
+label{
+    display:block;
+    margin-top:15px;
+    color:#aeb5cf;
+    font-size:13px;
+}
+
+input,select,textarea{
+    width:100%;
+    margin-top:8px;
+    padding:13px;
+    border-radius:14px;
+    border:1px solid #343a59;
+    outline:none;
+    color:white;
+    background:#090d1b;
+}
+
+textarea{
+    min-height:100px;
+    resize:vertical;
+}
+
+.status{
+    margin-top:12px;
+    padding:12px;
+    border-radius:12px;
+    background:#080b15;
+    color:#858da7;
+    font-size:12px;
+}
+
+.good{
+    color:#6ee3a0;
+}
+
+.bad{
+    color:#ff7070;
+}
+
+.small{
+    color:#737b95;
+    font-size:11px;
+    line-height:1.45;
+    margin-top:12px;
+}
+
+/* GENERATION */
+
+.aiOrb{
+    width:145px;
+    height:145px;
+    margin:18px auto 25px;
+    border-radius:50%;
+    background:
+    radial-gradient(circle at 35% 30%,white 0 3%,#c4b5ff 5%,#784eff 25%,#261450 65%,#090610 70%);
+    box-shadow:0 0 40px #855cff,0 0 100px #754cff55;
+    animation:spin 3s linear infinite;
+}
+
+@keyframes spin{
+    to{transform:rotate(360deg)}
+}
+
+.center{
+    text-align:center;
+}
+
+.progress{
+    height:12px;
+    margin-top:20px;
+    border-radius:20px;
+    overflow:hidden;
+    background:#070914;
+}
+
+.bar{
+    height:100%;
+    width:0;
+    border-radius:20px;
+    background:linear-gradient(90deg,#625cff,#b13dff);
+    transition:width .4s;
+}
+
+.percent{
+    margin-top:8px;
+    color:#858da7;
+    font-size:12px;
+}
+
+.timer{
+    margin-top:12px;
+    font-size:13px;
+    color:#a9b0c6;
+}
+
+/* RESULT */
+
+.resultImage{
+    width:100%;
+    min-height:280px;
+    border-radius:18px;
+    overflow:hidden;
+    background:#080a13;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.resultImage img{
+    display:block;
+    width:100%;
+    height:auto;
+}
+
+.placeholder{
+    padding:35px;
+    text-align:center;
+    color:#858da7;
+}
+
+/* HISTORY */
+
+.historyItem{
+    margin-top:12px;
+    border-radius:16px;
+    overflow:hidden;
+    background:#080b15;
+    border:1px solid #ffffff0b;
+}
+
+.historyItem img{
+    display:block;
+    width:100%;
+}
+
+.historyText{
+    padding:10px;
+    color:#9ca4bd;
+    font-size:12px;
+}
+
+/* GAME */
+
+.game{
+    position:relative;
+    height:500px;
+    overflow:hidden;
+    border-radius:20px;
+    touch-action:none;
+    background:
+    linear-gradient(
+        #4b8fc8 0%,
+        #b9dce8 44%,
+        #687d48 45%,
+        #253a21 100%
+    );
+}
+
+.horizon{
+    position:absolute;
+    left:0;
+    right:0;
+    top:45%;
+    height:2px;
+    background:#ffffff99;
+}
+
+.crosshair{
+    position:absolute;
+    left:50%;
+    top:48%;
+    width:45px;
+    height:45px;
+    transform:translate(-50%,-50%);
+    border:2px solid #fff9;
+    border-radius:50%;
+    z-index:5;
+}
+
+.crosshair:before,
+.crosshair:after{
+    content:"";
+    position:absolute;
+    background:#fff9;
+}
+
+.crosshair:before{
+    width:2px;
+    height:65px;
+    left:50%;
+    top:-12px;
+}
+
+.crosshair:after{
+    width:65px;
+    height:2px;
+    left:-12px;
+    top:50%;
+}
+
+.gameUI{
+    position:absolute;
+    left:12px;
+    right:12px;
+    top:12px;
+    z-index:10;
+    display:flex;
+    justify-content:space-between;
+}
+
+.badge{
+    padding:8px 10px;
+    border-radius:10px;
+    background:#0009;
+    font-size:12px;
+}
+
+.altitude{
+    position:absolute;
+    top:65px;
+    right:12px;
+    z-index:10;
+    padding:9px;
+    border-radius:10px;
+    background:#0008;
+    font-size:11px;
+}
+
+.warning{
+    position:absolute;
+    top:105px;
+    left:50%;
+    transform:translateX(-50%);
+    z-index:10;
+    padding:9px 13px;
+    border-radius:10px;
+    background:#ff333355;
+    opacity:0;
+    transition:.3s;
+}
+
+.warning.show{
+    opacity:1;
+}
+
+.cockpit{
+    position:absolute;
+    left:50%;
+    bottom:-25px;
+    transform:translateX(-50%);
+    width:270px;
+    height:145px;
+    z-index:8;
+    transition:.2s;
+}
+
+.nose{
+    position:absolute;
+    left:50%;
+    bottom:0;
+    transform:translateX(-50%);
+    width:55px;
+    height:120px;
+    border-radius:50% 50% 15px 15px;
+    background:linear-gradient(90deg,#555e64,#e4eaed,#555e64);
+    box-shadow:0 12px 30px #0008;
+}
+
+.wing{
+    position:absolute;
+    bottom:20px;
+    width:135px;
+    height:22px;
+    background:linear-gradient(#dfe7ea,#70797e);
+}
+
+.wing.left{
+    left:-15px;
+    transform:rotate(13deg);
+}
+
+.wing.right{
+    right:-15px;
+    transform:rotate(-13deg);
+}
+
+.windshield{
+    position:absolute;
+    left:50%;
+    bottom:85px;
+    transform:translateX(-50%);
+    width:42px;
+    height:30px;
+    border-radius:50% 50% 8px 8px;
+    background:#10263a;
+    border:2px solid #c6dbe7;
+}
+
+.controls{
+    display:flex;
+    gap:10px;
+}
+
+.controls button{
+    font-size:22px;
+    background:#292f48;
+}
+
+.gameStatus{
+    text-align:center;
+    margin-top:10px;
+    color:#9da5bf;
+    font-size:13px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+<header>
+    <div class="logo">🔮</div>
+    <h1>Future Vision</h1>
+    <div class="subtitle">V3 • AI Future Simulator</div>
+</header>
+
+<div class="uses">
+    🔮 Использований:
+    <b id="uses">10</b>
+</div>
+
+<!-- HOME -->
+
+<section id="home" class="card">
+
+    <h2>🔮 Увидеть будущее</h2>
+
+    <div class="info">
+        Создай реалистичную художественную
+        визуализацию возможного будущего.
+        <br><br>
+        ⚠️ Future Vision не предсказывает настоящее
+        будущее — результат является AI-визуализацией.
+    </div>
+
+    <label>Когда?</label>
+
+    <select id="period">
+        <option>Завтра</option>
+        <option>Через неделю</option>
+        <option>Через месяц</option>
+        <option>Через год</option>
+        <option>Через 10 лет</option>
+        <option>Через 50 лет</option>
+        <option>Через 100 лет</option>
+    </select>
+
+    <label>Что показать?</label>
+
+    <textarea
+        id="scene"
+        placeholder="Например: Берлин через 50 лет, реалистичный городской пейзаж"
+    ></textarea>
+
+    <button id="generateBtn" onclick="startVision()">
+        ✨ УВИДЕТЬ БУДУЩЕЕ
+    </button>
+
+    <div class="row">
+        <button class="secondary" onclick="openSettings()">
+            ⚙️ Настройки
+        </button>
+
+        <button class="secondary" onclick="openGame()">
+            ✈️ Игра
+        </button>
+    </div>
+
+    <button class="secondary" onclick="openHistory()">
+        🖼️ История
+    </button>
+
+</section>
+
+<!-- SETTINGS -->
+
+<section id="settings" class="card hidden">
+
+    <h2>⚙️ Настройки</h2>
+
+    <div class="info">
+        API-ключ хранится на сервере в
+        <code>.env</code>.
+        В этот интерфейс ключ вводить не нужно.
+    </div>
+
+    <label>Размер изображения</label>
+
+    <select id="size">
+        <option value="1024x1024">1024 × 1024</option>
+        <option value="1536x1024">1536 × 1024</option>
+        <option value="1024x1536">1024 × 1536</option>
+    </select>
+
+    <label>Качество</label>
+
+    <select id="quality">
+        <option value="auto">Auto</option>
+        <option value="low">Low</option>
+        <option value="medium">Medium</option>
+        <option value="high">High</option>
+    </select>
+
+    <button onclick="testServer()">
+        🔌 Проверить сервер
+    </button>
+
+    <div id="serverStatus" class="status">
+        Сервер ещё не проверялся.
+    </div>
+
+    <button class="secondary" onclick="show('home')">
+        ← Назад
+    </button>
+
+</section>
+
+<!-- GENERATION -->
+
+<section id="generation" class="card hidden">
+
+    <div class="center">
+
+        <div class="aiOrb"></div>
+
+        <h2>🧠 Генерация</h2>
+
+        <p id="generationText">
+            Подготовка...
+        </p>
+
+        <div class="progress">
+            <div class="bar" id="bar"></div>
+        </div>
+
+        <div class="percent" id="percent">0%</div>
+
+        <div class="timer">
+            ⏱️ Прошло:
+            <b id="timer">0.0</b> сек.
+        </div>
+
+    </div>
+
+</section>
+
+<!-- RESULT -->
+
+<section id="result" class="card hidden">
+
+    <h2>🖼️ Будущее готово</h2>
+
+    <div class="resultImage" id="resultImage">
+        <div class="placeholder">
+            Изображение появится здесь.
+        </div>
+    </div>
+
+    <div id="resultInfo" class="info" style="margin-top:12px"></div>
+
+    <button onclick="downloadResult()">
+        📥 Сохранить изображение
+    </button>
+
+    <button onclick="startVision()">
+        🔄 Сгенерировать ещё
+    </button>
+
+    <button class="secondary" onclick="show('home')">
+        ← На главную
+    </button>
+
+</section>
+
+<!-- HISTORY -->
+
+<section id="history" class="card hidden">
+
+    <h2>🖼️ История</h2>
+
+    <div id="historyList"></div>
+
+    <button class="danger" onclick="clearHistory()">
+        🗑️ Очистить историю
+    </button>
+
+    <button class="secondary" onclick="show('home')">
+        ← Назад
+    </button>
+
+</section>
+
+<!-- GAME -->
+
+<section id="gameCard" class="card hidden">
+
+    <h2>✈️ Держи штурвал</h2>
+
+    <div class="info">
+        Управляй самолётом от первого лица.
+        Самолёт не будет падать мгновенно —
+        у тебя есть запас высоты.
+        <br><br>
+        🏆 Успешный полёт: <b>+100</b><br>
+        💥 Авария: <b>−5</b>
+    </div>
+
+    <div class="game" id="game">
+
+        <div class="gameUI">
+            <div class="badge">✈️ FIRST PERSON</div>
+            <div class="badge">
+                ⏱️ <span id="gameTime">30</span>
+            </div>
+        </div>
+
+        <div class="altitude">
+            ВЫСОТА<br>
+            <b id="altitude">5000 м</b>
+        </div>
+
+        <div class="warning" id="warning">
+            ⚠️ НИЗКАЯ ВЫСОТА
+        </div>
+
+        <div class="horizon"></div>
+        <div class="crosshair"></div>
+
+        <div class="cockpit">
+            <div class="wing left"></div>
+            <div class="wing right"></div>
+            <div class="nose"></div>
+            <div class="windshield"></div>
+        </div>
+
+    </div>
+
+    <div class="controls">
+
+        <button
+            onpointerdown="steer(-1)"
+            onpointerup="stopSteer()"
+            onpointercancel="stopSteer()">
+            ↙️ ЛЕВО
+        </button>
+
+        <button
+            onpointerdown="steer(1)"
+            onpointerup="stopSteer()"
+            onpointercancel="stopSteer()">
+            ПРАВО ↘️
+        </button>
+
+    </div>
+
+    <div class="gameStatus" id="gameStatus">
+        Управляй плавно.
+    </div>
+
+    <button class="secondary" onclick="closeGame()">
+        ← Назад
+    </button>
+
+</section>
+
+</div>
+
+<script>
+
+/* =========================
+   STORAGE
+========================= */
+
+const USE_KEY="futureVisionV3_uses";
+const DAY_KEY="futureVisionV3_day";
+const HISTORY_KEY="futureVisionV3_history";
+const SETTINGS_KEY="futureVisionV3_settings";
+
+let lastImage=null;
+
+function today(){
+    const d=new Date();
+    return `${d.getFullYear()}-${d.getMonth()+1}-${d.getDate()}`;
+}
+
+function initUses(){
+
+    let uses=localStorage.getItem(USE_KEY);
+    let day=localStorage.getItem(DAY_KEY);
+
+    if(uses===null){
+
+        uses=10;
+
+        localStorage.setItem(
+            USE_KEY,
+            uses
+        );
+
+        localStorage.setItem(
+            DAY_KEY,
+            today()
+        );
+
+    }else if(day!==today()){
+
+        uses=parseInt(uses)+20;
+
+        localStorage.setItem(
+            USE_KEY,
+            uses
+        );
+
+        localStorage.setItem(
+            DAY_KEY,
+            today()
+        );
+    }
+
+    updateUses();
+}
+
+function getUses(){
+    return parseInt(
+        localStorage.getItem(USE_KEY)||"0"
+    );
+}
+
+function setUses(n){
+
+    n=Math.max(0,n);
+
+    localStorage.setItem(
+        USE_KEY,
+        n
+    );
+
+    updateUses();
+}
+
+function updateUses(){
+
+    document.getElementById("uses")
+        .textContent=getUses();
+}
+
+/* =========================
+   NAVIGATION
+========================= */
+
+function show(id){
+
+    [
+        "home",
+        "settings",
+        "generation",
+        "result",
+        "history",
+        "gameCard"
+    ].forEach(x=>{
+        document.getElementById(x)
+            .classList.add("hidden");
+    });
+
+    document.getElementById(id)
+        .classList.remove("hidden");
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+}
+
+/* =========================
+   SETTINGS
+========================= */
+
+function loadSettings(){
+
+    const settings=
+        JSON.parse(
+            localStorage.getItem(
+                SETTINGS_KEY
+            )||"{}"
+        );
+
+    if(settings.size)
+        document.getElementById("size")
+            .value=settings.size;
+
+    if(settings.quality)
+        document.getElementById("quality")
+            .value=settings.quality;
+}
+
+function saveSettings(){
+
+    const settings={
+        size:
+            document.getElementById("size").value,
+
+        quality:
+            document.getElementById("quality").value
+    };
+
+    localStorage.setItem(
+        SETTINGS_KEY,
+        JSON.stringify(settings)
+    );
+}
+
+document.getElementById("size")
+    .addEventListener("change",saveSettings);
+
+document.getElementById("quality")
+    .addEventListener("change",saveSettings);
+
+function openSettings(){
+
+    loadSettings();
+    show("settings");
+}
+
+/* =========================
+   SERVER TEST
+========================= */
+
+async function testServer(){
+
+    const box=
+        document.getElementById(
+            "serverStatus"
+        );
+
+    box.textContent=
+        "🔄 Проверяю сервер...";
+
+    try{
+
+        const start=performance.now();
+
+        const response=
+            await fetch(
+                "/api/status",
+                {
+                    method:"GET",
+                    cache:"no-store"
+                }
+            );
+
+        const data=
+            await response.json();
+
+        const time=
+            ((performance.now()-start)/1000)
+            .toFixed(2);
+
+        if(!response.ok){
+
+            throw new Error(
+                data.error||
+                "Сервер вернул ошибку."
+            );
+        }
+
+        box.innerHTML=
+            `<span class="good">
+            🟢 Сервер работает<br>
+            AI: ${data.ai}<br>
+            Ответ: ${time} сек.
+            </span>`;
+
+    }catch(error){
+
+        box.innerHTML=
+            `<span class="bad">
+            🔴 Сервер недоступен<br><br>
+            ${escapeHTML(error.message)}
+            <br><br>
+            Убедись, что server.js запущен.
+            </span>`;
+    }
+}
+
+/* =========================
+   GENERATION
+========================= */
+
+let timerInterval=null;
+
+function startTimer(){
+
+    const started=performance.now();
+
+    clearInterval(timerInterval);
+
+    timerInterval=setInterval(()=>{
+
+        const seconds=
+            (performance.now()-started)/1000;
+
+        document.getElementById("timer")
+            .textContent=
+            seconds.toFixed(1);
+
+    },100);
+
+    return started;
+}
+
+function stopTimer(){
+
+    clearInterval(timerInterval);
+    timerInterval=null;
+}
+
+async function startVision(){
+
+    if(getUses()<=0){
+
+        alert(
+            "🔮 Использования закончились!\n\n"+
+            "Пройди мини-игру и получи +100."
+        );
+
+        openGame();
+
+        return;
+    }
+
+    const scene=
+        document.getElementById("scene")
+        .value.trim();
+
+    const period=
+        document.getElementById("period")
+        .value;
+
+    if(!scene){
+
+        alert(
+            "Напиши, что именно показать в будущем."
+        );
+
+        return;
+    }
+
+    /*
+       Списываем использование только
+       перед успешным отправлением.
+    */
+
+    setUses(getUses()-1);
+
+    show("generation");
+
+    const bar=
+        document.getElementById("bar");
+
+    const percent=
+        document.getElementById("percent");
+
+    const text=
+        document.getElementById("generationText");
+
+    bar.style.width="5%";
+    percent.textContent="5%";
+
+    text.textContent=
+        "Подготовка запроса...";
+
+    const started=startTimer();
+
+    const settings=
+        JSON.parse(
+            localStorage.getItem(
+                SETTINGS_KEY
+            )||"{}"
+        );
+
+    const prompt=
+        `Create an extremely realistic
+        photographic visualization of a possible future.
+
+        Time period: ${period}.
+
+        Scene:
+        ${scene}
+
+        Style:
+        ultra realistic professional photography,
+        believable future technology,
+        realistic architecture,
+        physically accurate lighting,
+        realistic shadows,
+        natural colors,
+        detailed materials,
+        realistic people when appropriate,
+        realistic atmosphere,
+        cinematic composition,
+        authentic camera perspective,
+        no text,
+        no watermark.
+
+        Important:
+        This is a fictional visualization of a possible future,
+        not a factual prediction.`;
+
+    try{
+
+        bar.style.width="15%";
+        percent.textContent="15%";
+
+        text.textContent=
+            "🧠 Отправляю запрос серверу...";
+
+        const response=
+            await fetch(
+                "/api/generate",
+                {
+                    method:"POST",
+
+                    headers:{
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    body:JSON.stringify({
+
+                        prompt:prompt,
+
+                        size:
+                            settings.size||
+                            "1024x1024",
+
+                        quality:
+                            settings.quality||
+                            "auto"
+                    })
+                }
+            );
+
+        bar.style.width="45%";
+        percent.textContent="45%";
+
+        text.textContent=
+            "🎨 AI генерирует изображение...";
+
+        const data=
+            await response.json();
+
+        if(!response.ok || !data.ok){
+
+            throw new Error(
+                data.error||
+                "Сервер не смог создать изображение."
+            );
+        }
+
+        bar.style.width="90%";
+        percent.textContent="90%";
+
+        text.textContent=
+            "📦 Получаю изображение...";
+
+        const elapsed=
+            ((performance.now()-started)/1000)
+            .toFixed(1);
+
+        stopTimer();
+
+        bar.style.width="100%";
+        percent.textContent="100%";
+
+        lastImage=data.image;
+
+        showResult(
+            data.image,
+            scene,
+            period,
+            data.time ?? elapsed
+        );
+
+    }catch(error){
+
+        stopTimer();
+
+        /*
+           Возвращаем использование,
+           если генерация не удалась.
+        */
+
+        setUses(getUses()+1);
+
+        show("home");
+
+        alert(
+            "❌ Генерация не удалась.\n\n"+
+            error.message+
+            "\n\n"+
+            "🔮 Использование возвращено."
+        );
+    }
+}
+
+/* =========================
+   RESULT
+========================= */
+
+function showResult(
+    image,
+    scene,
+    period,
+    serverTime
+){
+
+    const box=
+        document.getElementById(
+            "resultImage"
+        );
+
+    box.innerHTML="";
+
+    const img=
+        document.createElement("img");
+
+    img.src=image;
+
+    img.alt=
+        "Future Vision AI";
+
+    box.appendChild(img);
+
+    document.getElementById("resultInfo")
+        .innerHTML=
+        `<b>🔮 Период:</b> ${escapeHTML(period)}
+        <br><br>
+        <b>📍 Сцена:</b> ${escapeHTML(scene)}
+        <br><br>
+        ⏱️ Время генерации на сервере:
+        ${escapeHTML(String(serverTime))} сек.`;
+
+    addHistory(
+        image,
+        scene,
+        period
+    );
+
+    show("result");
+}
+
+/* =========================
+   DOWNLOAD
+========================= */
+
+function downloadResult(){
+
+    if(!lastImage){
+
+        alert("Изображение ещё не готово.");
+
+        return;
+    }
+
+    const a=
+        document.createElement("a");
+
+    a.href=lastImage;
+
+    a.download=
+        "future-vision-"+Date.now()+".png";
+
+    document.body.appendChild(a);
+
+    a.click();
+
+    a.remove();
+}
+
+/* =========================
+   HISTORY
+========================= */
+
+function addHistory(
+    image,
+    scene,
+    period
+){
+
+    let history=
+        JSON.parse(
+            localStorage.getItem(
+                HISTORY_KEY
+            )||"[]"
+        );
+
+    /*
+       Храним максимум 5 изображений,
+       чтобы localStorage не переполнялся.
+    */
+
+    history.unshift({
+        image:image,
+        scene:scene,
+        period:period,
+        date:new Date().toLocaleString()
+    });
+
+    history=history.slice(0,5);
+
+    try{
+
+        localStorage.setItem(
+            HISTORY_KEY,
+            JSON.stringify(history)
+        );
+
+    }catch(error){
+
+        /*
+           Если изображения не помещаются,
+           очищаем старую историю.
+        */
+
+        localStorage.removeItem(
+            HISTORY_KEY
+        );
+    }
+}
+
+function openHistory(){
+
+    const list=
+        document.getElementById(
+            "historyList"
+        );
+
+    const history=
+        JSON.parse(
+            localStorage.getItem(
+                HISTORY_KEY
+            )||"[]"
+        );
+
+    if(!history.length){
+
+        list.innerHTML=
+            `<div class="info">
+            История пока пустая.
+            </div>`;
+
+        show("history");
+
+        return;
+    }
+
+    list.innerHTML="";
+
+    history.forEach(item=>{
+
+        const div=
+            document.createElement("div");
+
+        div.className="historyItem";
+
+        div.innerHTML=
+            `<img src="${item.image}" alt="">
+             <div class="historyText">
+             🔮 ${escapeHTML(item.period)}
+             <br>
+             📍 ${escapeHTML(item.scene)}
+             <br>
+             🕒 ${escapeHTML(item.date)}
+             </div>`;
+
+        list.appendChild(div);
+    });
+
+    show("history");
+}
+
+function clearHistory(){
+
+    if(
+        !confirm(
+            "Удалить всю историю?"
+        )
+    )
+        return;
+
+    localStorage.removeItem(
+        HISTORY_KEY
+    );
+
+    openHistory();
+}
+
+/* =========================
+   ESCAPE
+========================= */
+
+function escapeHTML(value){
+
+    return String(value)
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#039;");
+}
+
+/* =========================
+   GAME
+========================= */
+
+let gameRunning=false;
+let altitude=5000;
+let gameTime=30;
+let steering=0;
+let gameTimer=null;
+let gameTick=null;
+
+function openGame(){
+
+    show("gameCard");
+
+    startGame();
+}
+
+function closeGame(){
+
+    stopGame();
+
+    show("home");
+}
+
+function startGame(){
+
+    stopGame();
+
+    gameRunning=true;
+    altitude=5000;
+    gameTime=30;
+    steering=0;
+
+    document.getElementById("gameTime")
+        .textContent="30";
+
+    document.getElementById("altitude")
+        .textContent="5000 м";
+
+    document.getElementById("gameStatus")
+        .textContent=
+        "Управляй плавно. У тебя есть запас высоты.";
+
+    gameTick=setInterval(()=>{
+
+        if(!gameRunning)
+            return;
+
+        /*
+           Базовое плавное снижение.
+        */
+
+        altitude-=4;
+
+        /*
+           Управление помогает
+           удерживать/набирать высоту.
+        */
+
+        if(steering!==0){
+
+            altitude+=13;
+
+        }
+
+        altitude=
+            Math.max(
+                0,
+                altitude
+            );
+
+        document.getElementById("altitude")
+            .textContent=
+            Math.round(altitude)+" м";
+
+        const warning=
+            document.getElementById(
+                "warning"
+            );
+
+        if(altitude<1200){
+
+            warning.classList.add("show");
+
+        }else{
+
+            warning.classList.remove("show");
+        }
+
+        if(altitude<=100){
+
+            crash();
+        }
+
+    },100);
+
+    gameTimer=setInterval(()=>{
+
+        if(!gameRunning)
+            return;
+
+        gameTime--;
+
+        document.getElementById("gameTime")
+            .textContent=gameTime;
+
+        if(gameTime<=0){
+
+            winGame();
+        }
+
+    },1000);
+}
+
+function stopGame(){
+
+    gameRunning=false;
+
+    clearInterval(gameTimer);
+    clearInterval(gameTick);
+
+    gameTimer=null;
+    gameTick=null;
+}
+
+function steer(direction){
+
+    if(!gameRunning)
+        return;
+
+    steering=direction;
+
+    document.querySelector(".cockpit")
+        .style.transform=
+        `translateX(-50%) rotate(${direction*4}deg)`;
+}
+
+function stopSteer(){
+
+    steering=0;
+
+    if(gameRunning){
+
+        document.querySelector(".cockpit")
+            .style.transform=
+            "translateX(-50%) rotate(0deg)";
+    }
+}
+
+function crash(){
+
+    if(!gameRunning)
+        return;
+
+    stopGame();
+
+    setUses(
+        getUses()-5
+    );
+
+    document.getElementById("gameStatus")
+        .innerHTML=
+        '<span class="bad">💥 АВАРИЯ! −5 использований</span>';
+
+    alert(
+        "💥 Самолёт разбился!\n\n"+
+        "−5 использований"
+    );
+}
+
+function winGame(){
+
+    if(!gameRunning)
+        return;
+
+    stopGame();
+
+    setUses(
+        getUses()+100
+    );
+
+    document.getElementById("gameStatus")
+        .innerHTML=
+        '<span class="good">🏆 Полёт завершён! +100 использований</span>';
+
+    alert(
+        "🏆 ПОБЕДА!\n\n"+
+        "+100 использований!"
+    );
+}
+
+/* =========================
+   TOUCH
+========================= */
+
+let touchX=0;
+
+const game=
+    document.getElementById("game");
+
+game.addEventListener(
+    "touchstart",
+    e=>{
+
+        if(!gameRunning)
+            return;
+
+        touchX=
+            e.touches[0].clientX;
+
+    },
+    {passive:true}
+);
+
+game.addEventListener(
+    "touchmove",
+    e=>{
+
+        if(!gameRunning)
+            return;
+
+        const x=
+            e.touches[0].clientX;
+
+        const diff=
+            x-touchX;
+
+        if(diff<-20){
+
+            steer(-1);
+
+        }else if(diff>20){
+
+            steer(1);
+        }
+
+    },
+    {passive:true}
+);
+
+game.addEventListener(
+    "touchend",
+    stopSteer,
+    {passive:true}
+);
+
+/* =========================
+   INIT
+========================= */
+
+initUses();
+loadSettings();
+
+</script>
+
+</body>
+  </html>
